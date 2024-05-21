@@ -1,24 +1,26 @@
 public class StudyProgramme {
 
-    private String dd, aa;
-    private int bb, aa1;
+    private String subject, aa;
+    private int numberOfSemestr, numberOfPossibleITN;
 
     //         StudyProgramme it = new StudyProgramme("IT", "AAA", 7, 5);
 
+//    StudyProgramme it = new StudyProgramme("IT", "AAA", 7, 5);
+    //7 is the number of semesters, 5 - number of possible ITN's before being allowed to be promoted to next semester
 
-    public StudyProgramme(String dd, String aa, int bb, int aa1) {
-        this.dd = dd;
+    public StudyProgramme(String subject, String aa, int numberOfSemestr, int numberOfPossibleITN) {
+        this.subject = subject;
         this.aa = aa;
-        this.bb = bb;
-        this.aa1 = aa1;
+        this.numberOfSemestr = numberOfSemestr;
+        this.numberOfPossibleITN = numberOfPossibleITN;
     }
 
-    public String getDd() {
-        return dd;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setDd(String dd) {
-        this.dd = dd;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getAa() {
@@ -29,11 +31,11 @@ public class StudyProgramme {
         this.aa = aa;
     }
 
-    public int getBb() {
-        return bb;
+    public int getNumberOfSemestr() {
+        return numberOfSemestr;
     }
 
-    public void setBb(int bb) {
-        this.bb = bb;
+    public void setNumberOfSemestr(int numberOfSemestr) {
+        this.numberOfSemestr = numberOfSemestr;
     }
 }

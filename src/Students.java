@@ -4,13 +4,22 @@ import java.util.Date;
 public class Students {
 
 
-    private ArrayList<Student> students;
+    private static ArrayList<Student> students = new ArrayList<>();
+
 
     public static void promoteAllStudents() {
     }
 
-    public ArrayList<Student> getStudents() {
-        return students;
+    public static int addStudents(Student student) {
+        students.add(student);
+//        System.out.printf("Student added: %s", student);
+        System.out.println("Student" + students.size() + " added");
+        return students.size();
+
+    }
+
+    public int getStudentsIndex() {
+        return students.size();
     }
 
     public static void displayInfoAboutAllStudents() {
