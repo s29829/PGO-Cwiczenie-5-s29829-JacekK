@@ -1,34 +1,40 @@
 public class StudyProgramme {
 
-    private String subject, aa;
+    private String fieldOfStudy, description;
     private int numberOfSemestr, numberOfPossibleITN;
 
     //         StudyProgramme it = new StudyProgramme("IT", "AAA", 7, 5);
-
-//    StudyProgramme it = new StudyProgramme("IT", "AAA", 7, 5);
     //7 is the number of semesters, 5 - number of possible ITN's before being allowed to be promoted to next semester
 
-    public StudyProgramme(String subject, String aa, int numberOfSemestr, int numberOfPossibleITN) {
-        this.subject = subject;
-        this.aa = aa;
-        this.numberOfSemestr = numberOfSemestr;
+    public StudyProgramme(String fieldOfStudy, String description, int numberOfSemestr, int numberOfPossibleITN) {
+        setFieldOfStudy(fieldOfStudy);
+        setDescription(description);
+        setNumberOfSemestr(numberOfSemestr);
+        setNumberOfPossibleITN(numberOfPossibleITN);
+    }
+
+    public int getNumberOfPossibleITN() {
+        return numberOfPossibleITN;
+    }
+
+    public void setNumberOfPossibleITN(int numberOfPossibleITN) {
         this.numberOfPossibleITN = numberOfPossibleITN;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getFieldOfStudy() {
+        return fieldOfStudy;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setFieldOfStudy(String fieldOfStudy) {
+        this.fieldOfStudy = fieldOfStudy;
     }
 
-    public String getAa() {
-        return aa;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAa(String aa) {
-        this.aa = aa;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getNumberOfSemestr() {

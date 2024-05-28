@@ -12,7 +12,7 @@ public class Students {
 
     public static int addStudents(Student student) {
         students.add(student);
-//        System.out.printf("Student added: %s", student);
+        System.out.printf("Student added: %s", student);
         System.out.println("Student" + students.size() + " added");
         return students.size();
 
@@ -23,5 +23,8 @@ public class Students {
     }
 
     public static void displayInfoAboutAllStudents() {
+        for (Student student : students) {
+            System.out.println(student.getName() +" / "+ student.getEmail());
+        }
     }
 }

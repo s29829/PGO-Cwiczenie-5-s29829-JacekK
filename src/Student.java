@@ -1,12 +1,15 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Student {
 
-    private String name, surename, email, address, phoneNumber, status;
-    private int yearOfBirth, montOfBirth, dayOfBirth;
+    private String name, surename, email, address, phoneNumber, status, indexNumber;
+    private static int counter = 0;
     private Date dateOfBirth;
-    private String[] statuses = new String[]{"candidate", "student", "graduate"};
-
+    private int dayOfBirth, monthOfBirth, yearOfBirth;
+    private String[] statusLevel = new String[]{"candidate", "student", "graduate"};
+    private StudyProgramme studyProgramme;
+    private ArrayList<String> subjectList = new ArrayList<>();
 
     public Student(String name, String surename, String email, String address, String phoneNumber, Date dateOfBirth) {
         setName(name);
@@ -15,12 +18,72 @@ public class Student {
         setAddress(address);
         setPhoneNumber(phoneNumber);
         setDateOfBirth(dateOfBirth);
-        setStatus("candidate");
-        Students.addStudents(this);
+        this.dayOfBirth = dateOfBirth.getDay();
+        this.monthOfBirth = dateOfBirth.getMonth();
+        this.yearOfBirth = dateOfBirth.getYear();
+        setStatus(statusLevel[0]);
+        setIndexNumber(++counter);
+
+    }
+
+    public void showStudentFullInfo() {
+        System.out.println("Name: " + getName());
+        System.out.println("Surename: " + getSurename());
+        System.out.println("Email: " + getEmail());
+        System.out.println("Address: " + getAddress());
+        System.out.println("PhoneNumber: " + getPhoneNumber());
+        System.out.println("Status: " + getStatus());
+        System.out.println("IndexNumber: " + getIndexNumber());
+        System.out.println("Date of Birth: " + getDateOfBirth());
+        System.out.println("Study Programe: " + studyProgramme.getFieldOfStudy());
+    }
+
+    public void showStudentInlineInfo() {
+        System.out.println("Student: " + getName() + " | " + getSurename() + " | " + getEmail() + " | " + getAddress() + " | " + getPhoneNumber() + " | " + getStatus() + " | " + getIndexNumber() + " | " + getDateOfBirth() + " | " + studyProgramme.getFieldOfStudy());
+
+    }
+
+    public void getListOfSubjects() {
+
+    }
+
+    public int getSubjectNumber(String subject) {
+        return 0;
     }
 
     public String getStatus() {
         return status;
+    }
+
+    public String getIndexNumber() {
+        return indexNumber;
+    }
+
+    public void setIndexNumber(int counter) {
+        if (counter < 10) {
+//            indexNumber = String.format("s0000%s", counter);
+            this.indexNumber = "s0000" + counter;
+        } else {
+            if (counter < 100) {
+                this.indexNumber = "s000" + counter;
+            } else {
+                if (counter < 1000) {
+                    this.indexNumber = "s00" + counter;
+                } else {
+                    if (counter < 10000) {
+                        this.indexNumber = "s0" + counter;
+                    } else {
+                        if (counter < 1000000) {
+                            this.indexNumber = "s" + counter;
+                        } else {
+                            if (counter < 1000000000) {
+                                this.indexNumber = "s" + counter;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void setStatus(String status) {
@@ -67,8 +130,8 @@ public class Student {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public String getDateOfBirth() {
+        return String.format("%d/%d/%d", dayOfBirth, monthOfBirth, yearOfBirth);
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
@@ -76,7 +139,8 @@ public class Student {
     }
 
     public void enrollStudent(StudyProgramme studyProgramme) {
-
+        this.studyProgramme = studyProgramme;
+        this.status = statusLevel[1];
     }
 
     public void addGrade(int grade, String subject) {
