@@ -8,14 +8,13 @@ public class Students {
 
 
     public static void promoteAllStudents() {
+        for (Student student : students) {
+            if (student.)student.
+        }
     }
 
-    public static int addStudents(Student student) {
+    public static void addStudents(Student student) {
         students.add(student);
-        System.out.printf("Student added: %s", student);
-        System.out.println("Student" + students.size() + " added");
-        return students.size();
-
     }
 
     public int getStudentsIndex() {
@@ -24,7 +23,7 @@ public class Students {
 
     public static void displayInfoAboutAllStudents() {
         for (Student student : students) {
-            System.out.println(student.getName() +" / "+ student.getEmail());
+            System.out.println(student.getName() +" | "+ student.getEmail());
         }
     }
 }

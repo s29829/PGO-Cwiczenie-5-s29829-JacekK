@@ -21,21 +21,19 @@ public class Subject {
     }
 
     public void addGrade(int grade) {
-        if (countGrade >= maxGrade) {
+        if (countGrade <= maxGrade) {
             this.grade[countGrade++] = grade;
         }
     }
 
     public double getAverageGrade() {
-
+        double sum = 0;
         for (int i = 0; i < countGrade; i++) {
-
+            sum += grade[i];
         }
-        return 0;
+        return sum / countGrade;
     }
 
-    public void setGrade(int grade) {
-    }
 
     public String getName() {
         return name;

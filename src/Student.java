@@ -6,10 +6,10 @@ public class Student {
     private String name, surename, email, address, phoneNumber, status, indexNumber;
     private static int counter = 0;
     private Date dateOfBirth;
-    private int dayOfBirth, monthOfBirth, yearOfBirth;
+    private int dayOfBirth, monthOfBirth, yearOfBirth, semester;
     private String[] statusLevel = new String[]{"candidate", "student", "graduate"};
     private StudyProgramme studyProgramme;
-    private ArrayList<String> subjectList = new ArrayList<>();
+    private ArrayList<Subject> subjectList = new ArrayList<>();
 
     public Student(String name, String surename, String email, String address, String phoneNumber, Date dateOfBirth) {
         setName(name);
@@ -22,8 +22,9 @@ public class Student {
         this.monthOfBirth = dateOfBirth.getMonth();
         this.yearOfBirth = dateOfBirth.getYear();
         setStatus(statusLevel[0]);
+        setSemester(1);
         setIndexNumber(++counter);
-
+        Students.addStudents(this);
     }
 
     public void showStudentFullInfo() {
@@ -36,6 +37,25 @@ public class Student {
         System.out.println("IndexNumber: " + getIndexNumber());
         System.out.println("Date of Birth: " + getDateOfBirth());
         System.out.println("Study Programe: " + studyProgramme.getFieldOfStudy());
+    }
+
+    public double getSumOfITN() {
+        double sum = 0;
+        for (Subject sub : subjectList){
+            sum += sub.getAverageGrade();
+        }return sum;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public ArrayList<Subject> getSubjectList() {
+        return subjectList;
     }
 
     public void showStudentInlineInfo() {
@@ -61,7 +81,6 @@ public class Student {
 
     public void setIndexNumber(int counter) {
         if (counter < 10) {
-//            indexNumber = String.format("s0000%s", counter);
             this.indexNumber = "s0000" + counter;
         } else {
             if (counter < 100) {
@@ -138,11 +157,35 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public int findSubjectNumber(String subject) {
+        if (subjectList.size() == 0) {
+            return -1;
+        }
+        for (int i = 0; i < subjectList.size(); i++) {
+            if (subjectList.get(i).getName().equals(subject)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void addNewSubject(String subject) {
+        subjectList.add(new Subject(subject));
+    }
+
     public void enrollStudent(StudyProgramme studyProgramme) {
         this.studyProgramme = studyProgramme;
         this.status = statusLevel[1];
     }
 
+
     public void addGrade(int grade, String subject) {
+        int subjectNumber = findSubjectNumber(subject);
+        if (subjectNumber == -1) {
+            addNewSubject(subject);
+            subjectList.get(subjectList.size() - 1).addGrade(grade);
+        } else {
+            subjectList.get(subjectNumber).addGrade(grade);
+        }
     }
 }
