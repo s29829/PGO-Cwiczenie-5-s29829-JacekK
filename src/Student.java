@@ -28,22 +28,36 @@ public class Student {
     }
 
     public void showStudentFullInfo() {
-        System.out.println("Name: " + getName());
-        System.out.println("Surename: " + getSurename());
-        System.out.println("Email: " + getEmail());
-        System.out.println("Address: " + getAddress());
-        System.out.println("PhoneNumber: " + getPhoneNumber());
-        System.out.println("Status: " + getStatus());
-        System.out.println("IndexNumber: " + getIndexNumber());
-        System.out.println("Date of Birth: " + getDateOfBirth());
-        System.out.println("Study Programe: " + studyProgramme.getFieldOfStudy());
+        if (status.equals(statusLevel[0])) {
+            System.out.println("Name: " + getName());
+            System.out.println("Surename: " + getSurename());
+            System.out.println("Email: " + getEmail());
+            System.out.println("Address: " + getAddress());
+            System.out.println("PhoneNumber: " + getPhoneNumber());
+            System.out.println("Status: " + getStatus());
+            System.out.println("IndexNumber: " + getIndexNumber());
+            System.out.println("Date of Birth: " + getDateOfBirth());
+        } else {
+            System.out.println("Name: " + getName());
+            System.out.println("Surename: " + getSurename());
+            System.out.println("Email: " + getEmail());
+            System.out.println("Address: " + getAddress());
+            System.out.println("PhoneNumber: " + getPhoneNumber());
+            System.out.println("Status: " + getStatus());
+            System.out.println("IndexNumber: " + getIndexNumber());
+            System.out.println("Date of Birth: " + getDateOfBirth());
+            System.out.println("Study Programe: " + studyProgramme.getFieldOfStudy());
+            System.out.println("Semester: " + getSemester());
+        }
     }
+
 
     public double getSumOfITN() {
         double sum = 0;
-        for (Subject sub : subjectList){
+        for (Subject sub : subjectList) {
             sum += sub.getAverageGrade();
-        }return sum;
+        }
+        return sum;
     }
 
     public int getSemester() {
@@ -59,8 +73,11 @@ public class Student {
     }
 
     public void showStudentInlineInfo() {
-        System.out.println("Student: " + getName() + " | " + getSurename() + " | " + getEmail() + " | " + getAddress() + " | " + getPhoneNumber() + " | " + getStatus() + " | " + getIndexNumber() + " | " + getDateOfBirth() + " | " + studyProgramme.getFieldOfStudy());
-
+        if (status.equals(statusLevel[0])) {
+            System.out.println("Student: " + getName() + " | " + getSurename() + " | " + getEmail() + " | " + getAddress() + " | " + getPhoneNumber() + " | " + getStatus() + " | " + getIndexNumber() + " | " + getDateOfBirth());
+        } else {
+            System.out.println("Student: " + getName() + " | " + getSurename() + " | " + getEmail() + " | " + getAddress() + " | " + getPhoneNumber() + " | " + getStatus() + " | " + getIndexNumber() + " | " + getDateOfBirth() + " | " + studyProgramme.getFieldOfStudy());
+        }
     }
 
     public void getListOfSubjects() {
@@ -68,6 +85,14 @@ public class Student {
     }
 
     public int getSubjectNumber(String subject) {
+        if (subjectList != null) {
+            for (int i = 0; i <= subjectList.size(); i++) {
+                if (subjectList.get(i).getName().equals(subject)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
         return 0;
     }
 
@@ -106,7 +131,9 @@ public class Student {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        if (status.equals("candidate") || status.equals("student") || status.equals("graduate")) {
+            this.status = status;
+        }
     }
 
     public String getName() {
@@ -171,6 +198,31 @@ public class Student {
 
     public void addNewSubject(String subject) {
         subjectList.add(new Subject(subject));
+        subjectList.get(subjectList.size() - 1).setSemestrSubject(this.semester);
+//        System.out.println("Subject: "+subjectList.get(subjectList.size()-1).getName()+" Semestr "+subjectList.get(subjectList.size()-1).getSemestrSubject());
+    }
+
+    public void promoteToNextSemester() {
+        double sumITN = 0;
+        if (getStatus() == statusLevel[1]) {
+            for (Subject subject : subjectList) {
+                if ((subject.getAverageGrade() > Subject.getMinAverageGradeToPassExam()) && (subject.getSemestrSubject() == getSemester())) {
+                    sumITN += subject.getAverageGrade();
+                }
+                if (sumITN >= studyProgramme.getNumberOfPossibleITN()) {
+                    if (studyProgramme.getNumberOfSemestr() == getSemester()) {
+                        setStatus("graduate");
+                    }
+                    if (studyProgramme.getNumberOfSemestr() > getSemester()) {
+                        setSemester(getSemester() + 1);
+
+                    }
+
+                }
+            }
+        } else if (getStatus() != statusLevel[2]) {
+//            System.out.println("Student has status: " + getStatus() + ". They can't be promoted");
+        }
     }
 
     public void enrollStudent(StudyProgramme studyProgramme) {

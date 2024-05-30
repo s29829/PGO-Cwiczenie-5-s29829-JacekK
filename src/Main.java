@@ -8,25 +8,16 @@ public class Main {
         System.out.println("PGO - excersis 5 - S29829 Jacek K");
 
         Student s = new Student("John", "Doe", "doe@wp.pl", "Warsaw, Zlota 12", "333-322-222", new Date(1980, 1, 1));
-//        Student s1 = new Student("John", "Doe", "doe@wp.pl", "Warsaw, Zlota 12", "333-322-222", new Date(1980, 1, 1));
-//        Student s2 = new Student("John", "Doe", "doe@wp.pl", "Warsaw, Zlota 12", "333-322-222", new Date(1980, 1, 1));
+        Student s1 = new Student("John", "Doe", "doe@wp.pl", "Warsaw, Zlota 12", "333-322-222", new Date(1980, 1, 1));
+        Student s2 = new Student("John", "Doe", "doe@wp.pl", "Warsaw, Zlota 12", "333-322-222", new Date(1980, 1, 1));
         //student get the indexNumber automatically assigned
-        StudyProgramme it = new StudyProgramme("IT", "AAA", 7, 5);
+        StudyProgramme it = new StudyProgramme("IT", "AAA", 2, 5);
         //7 is the number of semesters, 5 - number of possible ITN's before being allowed to be promoted to next semester
 
         s.enrollStudent(it);
         //we assign the student to the first semester by default
         s.addGrade(5, "PGO");
-        s.addGrade(2, "PGO");
-        s.addGrade(5, "PGO");
-        s.addGrade(5, "PGO");
         s.addGrade(2, "APBD");
-        s.addGrade(2, "APBD");
-        s.addGrade(3, "APBD");
-        s.addGrade(3, "APBD");
-
-//        System.out.println("Grades:" + s.getSubjectList().get(0).getName()+" | "+s.getSubjectList().get(0).getAverageGrade());
-//        System.out.println("Grades2:" + s.getSubjectList().get(1).getName()+" | "+s.getSubjectList().get(1).getAverageGrade());
 
 
         //...
@@ -37,7 +28,5 @@ public class Main {
         //We check the current semester for each student
         Students.displayInfoAboutAllStudents();
 
-//        s.showStudentFullInfo();
-//        s.showStudentInlineInfo();
     }
 }

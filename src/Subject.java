@@ -4,6 +4,17 @@ public class Subject {
     private int maxGrade = 19;
     private int[] grade = new int[maxGrade];
     private int countGrade = 0;
+    private int semestrSubject;
+
+    public static double getMinAverageGradeToPassExam() {
+        return minAverageGradeToPassExam;
+    }
+
+    public static void setMinAverageGradeToPassExam(double minAverageGradeToPassExam) {
+        Subject.minAverageGradeToPassExam = minAverageGradeToPassExam;
+    }
+
+    private static double minAverageGradeToPassExam = 1;
 
     public Subject(String name, String shortCode, String description) {
         setName(name);
@@ -18,6 +29,14 @@ public class Subject {
 
     public Subject(String name) {
         setName(name);
+    }
+
+    public int getSemestrSubject() {
+        return semestrSubject;
+    }
+
+    public void setSemestrSubject(int semestrSubject) {
+        this.semestrSubject = semestrSubject;
     }
 
     public void addGrade(int grade) {

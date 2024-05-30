@@ -8,8 +8,9 @@ public class Students {
 
 
     public static void promoteAllStudents() {
+
         for (Student student : students) {
-            if (student.)student.
+           student.promoteToNextSemester();
         }
     }
 
@@ -23,7 +24,8 @@ public class Students {
 
     public static void displayInfoAboutAllStudents() {
         for (Student student : students) {
-            System.out.println(student.getName() +" | "+ student.getEmail());
+//            student.showStudentFullInfo();
+            student.showStudentInlineInfo();
         }
     }
 }

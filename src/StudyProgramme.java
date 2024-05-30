@@ -4,10 +4,7 @@ public class StudyProgramme {
 
     private String fieldOfStudy, description;
     private int numberOfSemestr, numberOfPossibleITN;
-//    ArrayList<Subject> subjects = new ArrayList<>();
 
-    //         StudyProgramme it = new StudyProgramme("IT", "AAA", 7, 5);
-    //7 is the number of semesters, 5 - number of possible ITN's before being allowed to be promoted to next semester
 
     public StudyProgramme(String fieldOfStudy, String description, int numberOfSemestr, int numberOfPossibleITN) {
         setFieldOfStudy(fieldOfStudy);
@@ -15,6 +12,7 @@ public class StudyProgramme {
         setNumberOfSemestr(numberOfSemestr);
         setNumberOfPossibleITN(numberOfPossibleITN);
     }
+
 
     public int getNumberOfPossibleITN() {
         return numberOfPossibleITN;
