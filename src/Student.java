@@ -209,16 +209,16 @@ public class Student {
                 if ((subject.getAverageGrade() > Subject.getMinAverageGradeToPassExam()) && (subject.getSemestrSubject() == getSemester())) {
                     sumITN += subject.getAverageGrade();
                 }
-                if (sumITN >= studyProgramme.getNumberOfPossibleITN()) {
-                    if (studyProgramme.getNumberOfSemestr() == getSemester()) {
-                        setStatus("graduate");
-                    }
-                    if (studyProgramme.getNumberOfSemestr() > getSemester()) {
-                        setSemester(getSemester() + 1);
-
-                    }
+            }
+            if (sumITN >= studyProgramme.getNumberOfPossibleITN()) {
+                if (studyProgramme.getNumberOfSemestr() == getSemester()) {
+                    setStatus("graduate");
+                }
+                if (studyProgramme.getNumberOfSemestr() > getSemester()) {
+                    setSemester(getSemester() + 1);
 
                 }
+
             }
         } else if (getStatus() != statusLevel[2]) {
 //            System.out.println("Student has status: " + getStatus() + ". They can't be promoted");
